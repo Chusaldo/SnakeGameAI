@@ -22,8 +22,8 @@ DARK_GREEN = (43, 51, 24)
 
 # Screen initialization
 cell_size = 30
-number_of_cells = 25
-OFFSET = 75
+number_of_cells = 10
+OFFSET = 150
 SCREEN_WIDTH = 2*OFFSET + cell_size*number_of_cells
 SCREEN_HEIGHT = SCREEN_WIDTH
 SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
@@ -31,7 +31,7 @@ pygame.display.set_caption("Snake Game")
 
 class Food:
     def __init__(self, snake_body, snake_color):
-        self.surface = pygame.image.load("Graphics/food.png")
+        self.surface = pygame.image.load("../Graphics/food.png")
         self.position = self.generate_random_pos(snake_body)
         self.color = snake_color
 
@@ -56,8 +56,8 @@ class Snake:
         self.body = [Vector2(6, 9), Vector2(5, 9), Vector2(4, 9)]
         self.direction = RIGHT
         self.add_segment = False
-        self.eat_sound = pygame.mixer.Sound("Sounds/eat.mp3")
-        self.wall_hit_sound = pygame.mixer.Sound("Sounds/wall.mp3")
+        self.eat_sound = pygame.mixer.Sound("../Sounds/eat.mp3")
+        self.wall_hit_sound = pygame.mixer.Sound("../Sounds/wall.mp3")
         self.color = (random.randint(0,255), random.randint(0,255), random.randint(0,255))
         self.frames_without_food = 0
 
@@ -105,7 +105,7 @@ class Game:
             self.food.position = self.food.generate_random_pos(self.snake.body)
             self.snake.add_segment = True
             self.score += 1
-            self.snake.eat_sound.play()
+            #self.snake.eat_sound.play()
             self.snake.frames_without_food = 0
             ge[index].fitness += 10
         else:
@@ -117,6 +117,7 @@ class Game:
 
     def check_collision_with_edges(self, index):
         if self.snake.body[0].x == number_of_cells or self.snake.body[0].x == -1 or self.snake.body[0].y == number_of_cells or self.snake.body[0].y == -1:
+            #self.snake.wall_hit_sound.play()
             ge[index].fitness -= 1
             self.game_over(index)
 
@@ -272,7 +273,7 @@ def run(config_path):
     )
 
     pop = neat.Population(config)
-    pop.run(eval_genomes, 50)
+    pop.run(eval_genomes, 15)
 
 if __name__ == "__main__":
     local_dir = os.path.dirname(__file__)

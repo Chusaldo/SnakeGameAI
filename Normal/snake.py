@@ -29,7 +29,7 @@ pygame.display.set_caption("Snake Game")
 
 class Food:
     def __init__(self, snake_body):
-        self.surface = pygame.image.load("Graphics/food.png")
+        self.surface = pygame.image.load("../Graphics/food.png")
         self.position = self.generate_random_pos(snake_body)
 
     def draw(self):
@@ -52,8 +52,8 @@ class Snake:
         self.body = [Vector2(6, 9), Vector2(5, 9), Vector2(4, 9)]
         self.direction = RIGHT
         self.add_segment = False
-        self.eat_sound = pygame.mixer.Sound("Sounds/eat.mp3")
-        self.wall_hit_sound = pygame.mixer.Sound("Sounds/wall.mp3")
+        self.eat_sound = pygame.mixer.Sound("../Sounds/eat.mp3")
+        self.wall_hit_sound = pygame.mixer.Sound("../Sounds/wall.mp3")
 
     def draw(self):
         for segment in self.body:
