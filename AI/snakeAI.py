@@ -273,6 +273,11 @@ def run(config_path):
     )
 
     pop = neat.Population(config)
+
+    stats = neat.StatisticsReporter()
+    pop.add_reporter(stats)
+    pop.add_reporter(neat.StdOutReporter(True))
+
     pop.run(eval_genomes, 15)
 
 if __name__ == "__main__":
