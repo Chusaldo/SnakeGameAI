@@ -22,8 +22,8 @@ DARK_GREEN = (43, 51, 24)
 
 # Screen initialization
 cell_size = 30
-number_of_cells = 10
-OFFSET = 150
+number_of_cells = 25
+OFFSET = 75
 SCREEN_WIDTH = 2*OFFSET + cell_size*number_of_cells
 SCREEN_HEIGHT = SCREEN_WIDTH
 SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
@@ -37,7 +37,7 @@ class Food:
 
     def draw(self):
         food_rect = pygame.Rect(OFFSET + self.position.x * cell_size, OFFSET + self.position.y * cell_size, cell_size, cell_size)
-        pygame.draw.circle(SCREEN, self.color, (OFFSET + (self.position.x+0.5) * cell_size, OFFSET + (self.position.y+0.5) * cell_size), cell_size/2)
+        pygame.draw.circle(SCREEN, self.color, (OFFSET + (self.position.x+0.48) * cell_size, OFFSET + (self.position.y+0.48) * cell_size), cell_size/2)
         SCREEN.blit(self.surface, food_rect)
 
     def generate_random_cell(self):
